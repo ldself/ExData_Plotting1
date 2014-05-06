@@ -13,6 +13,14 @@ sampleData <- read.table("household_power_consumption.txt"
                          , nrows=2880
 )
 
+png(
+  "plot1.png",
+  width     = 480,
+  height    = 480,
+  units     = "px",
+)
+
+par(mfrow=c(1,1))
 ## convert the Global_active_power column to numeric
 sampleData$Global_active_power <- as.numeric(as.character(sampleData$Global_active_power))
 
@@ -20,5 +28,4 @@ sampleData$Global_active_power <- as.numeric(as.character(sampleData$Global_acti
 hist(sampleData$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
 
 ## save it as a PNG file
-dev.copy(png, file="plot1.png")
 dev.off()

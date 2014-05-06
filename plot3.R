@@ -22,7 +22,7 @@ sampleData <- cbind(sampleData
 names(sampleData)[length(names(sampleData))] = 'DateTime'
 
 png(
-  "plot2.png",
+  "plot3.png",
   width     = 480,
   height    = 480,
   units     = "px",
@@ -32,11 +32,26 @@ par(mfrow=c(1,1))
 
 ## draw the plot
 with(sampleData, plot(DateTime
-                      , Global_active_power
+                      , Sub_metering_1
+                      , col="black"
                       , xlab=""
-                      , ylab="Global Active Power (kilowatts)"
+                      , ylab="Energy sub metering"
                       , type="l")
 )
-
+with(sampleData, points(DateTime
+                        , Sub_metering_2
+                        , col="red"
+                        , type="l"))
+with(sampleData, points(DateTime
+                        , Sub_metering_3
+                        , col="blue"
+                        , type="l"
+                        ))
+legend("topright",
+       , legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3")
+       , col=c("black","red","blue")
+       , lwd=0
+       , cex=1
+       )
 ## save it as a PNG file
 dev.off()
